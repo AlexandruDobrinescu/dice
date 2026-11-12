@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="description" content="Roll dice with a single tap. Works offline.">
+  <title>Dice Roller</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Dice Roller</h1>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="theme-icon light-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 16a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-12a5 5 0 0 0 0 10V7z"/></svg>
+        <svg class="theme-icon dark-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm0 2a7 7 0 0 0 0 14V5zm0-3v3a7 7 0 0 0 0 14V5z"/></svg>
+      </button>
+    </header>
+
+    <main class="app-main">
+      <!-- Dice count selector -->
+      <section class="dice-count-section" aria-label="Select number of dice">
+        <label for="dice-count">Dice: <strong id="dice-count-value">1</strong></label>
+        <div class="dice-count-controls">
+          <button id="dice-minus" class="count-btn" aria-label="Decrease dice count" title="Decrease">−</button>
+          <button id="dice-plus" class="count-btn" aria-label="Increase dice count" title="Increase">+</button>
+        </div>
+      </section>
+
+      <!-- Roll button -->
+      <button id="roll-btn" class="roll-btn" aria-label="Roll dice">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19 5.5h-3.17a1.5 1.5 0 0 0-1.3.77L13 8.83l-1.53-2.56A1.5 1.5 0 0 0 10.17 5.5H5A3 3 0 0 0 2 8.5v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8A3 3 0 0 0 19 5.5zM5 19a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h3.83l3.34 5.57a1.5 1.5 0 0 0 1.3.77h.1a1.5 1.5 0 0 0 1.3-.77L15.17 10H19a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5z"/></svg>
+        <span>Roll</span>
+      </button>
+
+      <!-- Dice display area -->
+      <section id="dice-area" class="dice-area" aria-label="Dice results" aria-live="polite">
+        <p class="placeholder-text">Tap Roll to start</p>
+      </section>
+
+      <!-- Total display -->
+      <section id="total-display" class="total-display" aria-label="Total score" aria-live="polite">
+        <span class="total-label">Total</span>
+        <span id="total-value" class="total-value">—</span>
+      </section>
+
+      <!-- Roll history -->
+      <section class="history-section" aria-label="Roll history">
+        <div class="history-header">
+          <h2>History</h2>
+          <button id="clear-history" class="clear-btn" aria-label="Clear history" title="Clear history">Clear</button>
+        </div>
+        <div id="history-list" class="history-list" aria-live="polite">
+          <p class="placeholder-text">No rolls yet</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Dice Roller • Works offline</p>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

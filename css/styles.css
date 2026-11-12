@@ -1,0 +1,487 @@
+/* ===== CSS Custom Properties ===== */
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #0f3460;
+  --text-primary: #e8e8e8;
+  --text-secondary: #a0a0a0;
+  --accent: #e94560;
+  --accent-hover: #c73a52;
+  --dice-bg: #f5f5f5;
+  --dice-dot: #1a1a2e;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f0f0f5;
+  --bg-secondary: #e8e8f0;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-secondary: #666666;
+  --accent: #e94560;
+  --accent-hover: #c73a52;
+  --dice-bg: #ffffff;
+  --dice-dot: #1a1a2e;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ===== App Container ===== */
+.app-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ===== Header ===== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 20px;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.icon-btn {
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.icon-btn:hover, .icon-btn:focus-visible {
+  background: var(--bg-card);
+  transform: scale(1.05);
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-icon {
+  display: none;
+}
+
+.light-icon {
+  display: block;
+}
+
+[data-theme="light"] .light-icon {
+  display: none;
+}
+
+[data-theme="light"] .dark-icon {
+  display: block;
+}
+
+/* ===== Main ===== */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== Dice Count Section ===== */
+.dice-count-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.dice-count-section label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.dice-count-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.count-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-btn:hover, .count-btn:focus-visible {
+  background: var(--accent);
+  color: #fff;
+}
+
+.count-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== Roll Button ===== */
+.roll-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 16px 32px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+  letter-spacing: 0.5px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.roll-btn:hover, .roll-btn:focus-visible {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(233, 69, 96, 0.4);
+}
+
+.roll-btn:active {
+  transform: translateY(0);
+}
+
+.roll-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.roll-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== Dice Area ===== */
+.dice-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 10px;
+  min-height: 120px;
+  align-items: center;
+}
+
+.placeholder-text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* ===== Dice ===== */
+.die {
+  width: 64px;
+  height: 64px;
+  background: var(--dice-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 6px;
+  gap: 2px;
+  transition: transform 0.15s ease;
+  animation: diceRoll 0.5s ease-out;
+}
+
+@keyframes diceRoll {
+  0% { transform: scale(0.5) rotate(0deg); opacity: 0.5; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+.die.rolling {
+  animation: diceShake 0.4s ease-in-out;
+}
+
+@keyframes diceShake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-15deg) scale(1.05); }
+  40% { transform: rotate(15deg) scale(1.05); }
+  60% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
+}
+
+.die-dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.die-dot.active {
+  background: var(--dice-dot);
+}
+
+/* ===== Total Display ===== */
+.total-display {
+  text-align: center;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.total-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.total-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ===== History Section ===== */
+.history-section {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .history-header {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.history-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.clear-btn {
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.clear-btn:hover, .clear-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.clear-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  transition: background var(--transition);
+}
+
+.history-item:hover {
+  background: var(--bg-card);
+}
+
+.history-dice {
+  display: flex;
+  gap: 4px;
+}
+
+.history-die {
+  width: 24px;
+  height: 24px;
+  background: var(--dice-bg);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 2px;
+  gap: 1px;
+}
+
+.history-die .die-dot.active {
+  background: var(--dice-dot);
+}
+
+.history-total {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.history-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Footer ===== */
+.app-footer {
+  text-align: center;
+  padding: 16px 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 360px) {
+  .die {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .roll-btn {
+    padding: 14px 24px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 400px) {
+  .die {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (min-width: 600px) {
+  .app-container {
+    padding: 24px;
+  }
+  
+  .die {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .dice-area {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 900px) {
+  .app-container {
+    max-width: 700px;
+  }
+  
+  .die {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* ===== Scrollbar ===== */
+.history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 3px;
+}
+
+/* ===== Focus visible ===== */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== Print ===== */
+@media print {
+  .roll-btn, .count-btn, .icon-btn, .clear-btn {
+    display: none;
+  }
+  
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
